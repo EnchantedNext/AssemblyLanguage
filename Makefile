@@ -2,7 +2,6 @@ CC = clang
 TARGET = server
 SRC = server.c
 
-# Default target
 all: $(TARGET)
 
 $(TARGET): $(SRC)

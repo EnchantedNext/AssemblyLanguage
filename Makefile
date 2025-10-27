@@ -1,18 +1,21 @@
 CC = clang
-TARGET = server
-SRC = server.c
 
-all: $(TARGET)
+TARGET_APP = app
+SRC_APP = app.c
 
-$(TARGET): $(SRC)
-	$(CC) -o $(TARGET) $(SRC)
+TARGET_CLIENT = client
+SRC_CLIENT = client.c
 
-run: $(TARGET)
-	@echo "Running $(TARGET)..."
-	./$(TARGET)
+all: $(TARGET_APP) $(TARGET_CLIENT)
+
+$(TARGET_APP): $(SRC_APP)
+	$(CC) -o $(TARGET_APP) $(SRC_APP)
+
+$(TARGET_CLIENT): $(SRC_CLIENT)
+	$(CC) -o $(TARGET_CLIENT) $(SRC_CLIENT)
 
 clean:
 	@echo "Cleaning up..."
-	rm -f $(TARGET)
+	rm -f $(TARGET_APP) $(TARGET_CLIENT)
 
-.PHONY: all run clean
+.PHONY: all clean

@@ -37,7 +37,7 @@ typedef struct {
 
 int handle_client(void *arg) {
   sock_thrd_args_t *args = (sock_thrd_args_t *)arg;
-  printf("Handling client %s:%i...\n", args->host, (*args).port);
+  printf("[INFO] Handling client %s:%i...\n", args->host, (*args).port);
   char buf[30];
   sprintf(buf, WAIT_MSG_BUF_FMT, PROCESS_TIME);
   sock_thrd_send_data_t data;
@@ -59,7 +59,7 @@ int handle_client(void *arg) {
   send(args->fd, &final_data, sizeof(final_data), 0);
   free(args->host);
   free(args);
-  printf("Succeeded handling client!\n");
+  printf("[INFO] Successfully handled client!\n");
   return 0;
 }
 
@@ -91,7 +91,7 @@ int main(void) {
     int client_fd =
         accept(sock_desc, (struct sockaddr *)&client_addr, &addr_size);
     if (client_fd < 0) {
-      printf("Failed to accept connection!");
+      printf("Failed to accept connection!\n");
       continue;
     }
     char host[INET_ADDRSTRLEN];
@@ -103,14 +103,14 @@ int main(void) {
     args->port = port;
     args->fd = client_fd;
     if (thrd_create(&thread, handle_client, args)) {
-      printf("Failed to create thread!");
+      printf("Failed to create thread!\n");
       free(args->host);
       free(args);
       exit(EXIT_FAIL);
     }
     thrd_detach(thread);
   }
-  printf("Closing socket...");
+  printf("Closing socket...\n");
   close(sock_desc);
   return EXIT_SUCCESS;
 };

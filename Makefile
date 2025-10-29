@@ -1,21 +1,18 @@
 CC = clang
 
-TARGET_APP = app
-SRC_APP = app.c
+TARGET = linkedlist
+SRC = linkedlist.c
 
-TARGET_CLIENT = client
-SRC_CLIENT = client.c
+all: $(TARGET)
 
-all: $(TARGET_APP) $(TARGET_CLIENT)
+$(TARGET): $(SRC)
+	$(CC) -o $(TARGET) $(SRC)
 
-$(TARGET_APP): $(SRC_APP)
-	$(CC) -o $(TARGET_APP) $(SRC_APP)
-
-$(TARGET_CLIENT): $(SRC_CLIENT)
-	$(CC) -o $(TARGET_CLIENT) $(SRC_CLIENT)
+run:
+	./$(TARGET)
 
 clean:
 	@echo "Cleaning up..."
-	rm -f $(TARGET_APP) $(TARGET_CLIENT)
+	rm -f $(TARGET)
 
 .PHONY: all clean

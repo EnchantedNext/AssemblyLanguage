@@ -1,7 +1,7 @@
 CC = clang
 
 TARGET = stack
-SRC = stack.c
+SRC = stack.c linkedlist.c
 
 all: $(TARGET)
 

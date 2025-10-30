@@ -1,22 +1,27 @@
 #include <limits.h>
 #include <stdlib.h>
 
-typedef struct node_t node_t;
+#include "linkedlist.h"
 
-struct node_t {
-  int val;
-  node_t *next;
-};
+//  typedef struct node_t node_t;
 
-typedef struct {
-  node_t *head;
-  node_t *tail;
-  int length;
-} linkedlist_t;
+//  struct node_t {
+//  int val;
+//  node_t *next;
+//  };
+
+//  typedef struct {
+//  node_t *head;
+//  node_t *tail;
+//  int length;
+//  } linkedlist_t;
 
 int addHeadToEmpty(linkedlist_t *list, int val) {
   list->length++;
   node_t *head = malloc(sizeof(node_t));
+  if (head == NULL) {
+    return -1;
+  }
   head->val = val;
   head->next = NULL;
   list->head = head;
@@ -26,9 +31,12 @@ int addHeadToEmpty(linkedlist_t *list, int val) {
 
 int addAtTail(linkedlist_t *list, int val) {
   if (!list->length) {
-    return addHeadToEmpty(this, val);
+    return addHeadToEmpty(list, val);
   }
   node_t *node = malloc(sizeof(node_t));
+  if (node == NULL) {
+    return -1;
+  }
   node->val = val;
   node->next = NULL;
   list->tail->next = node;
@@ -42,6 +50,9 @@ int addAtHead(linkedlist_t *list, int val) {
     return addHeadToEmpty(list, val);
   }
   node_t *node = malloc(sizeof(node_t));
+  if (node == NULL) {
+    return -1;
+  }
   node->val = val;
   node->next = list->head;
   list->head = node;
@@ -68,6 +79,9 @@ int addAtIndex(linkedlist_t *list, int val, int idx) {
   }
   node_t *node = findNode(list, idx - 1);
   node_t *new_node = malloc(sizeof(node_t));
+  if (new_node == NULL) {
+    return -1;
+  }
   new_node->val = val;
   new_node->next = node->next;
   node->next = new_node;

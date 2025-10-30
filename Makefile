@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = linkedlist
-SRC = linkedlist.c
+TARGET = stack
+SRC = stack.c
 
 all: $(TARGET)
 
@@ -15,4 +15,4 @@ clean:
 	@echo "Cleaning up..."
 	rm -f $(TARGET)
 
-.PHONY: all clean
+.PHONY: all run clean

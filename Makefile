@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = queue
-SRC = queue.c linkedlist.c
+TARGET = tree
+SRC = tree.c
 
 all: $(TARGET)
 

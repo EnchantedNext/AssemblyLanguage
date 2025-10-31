@@ -3,18 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node_t node_t;
-
-struct node_t {
-  int val;
-  node_t *left;
-  node_t *right;
-};
-
-typedef struct {
-  node_t *root;
-  int length;
-} btree_t;
+// local
+#include "tree.h"
 
 node_t *getMappingNode(btree_t *tree, int val) {
   node_t *node = tree->root;
@@ -93,25 +83,4 @@ void freeBTree(node_t *root) {
     freeBTree(root->left);
     free(root);
   }
-}
-
-int main(void) {
-  btree_t *tree = malloc(sizeof(btree_t));
-  if (!tree) {
-    return -1;
-  }
-  tree->length = 0;
-  tree->root = NULL;
-
-  addToBTree(tree, 5);
-  addToBTree(tree, 10);
-  addToBTree(tree, 0);
-  printf("%d\n", searchBTree(tree, 10));
-  printf("%d\n", searchBTree(tree, 7));
-
-  freeBTree(tree->root);
-  free(tree);
-  tree->root = NULL;
-  tree->length = 0;
-  return 0;
 }

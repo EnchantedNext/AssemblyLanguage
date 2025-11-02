@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = tree
-SRC = tree.c
+TARGET = matrix
+SRC = matrix.c
 
 all: $(TARGET)
 

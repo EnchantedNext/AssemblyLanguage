@@ -1,6 +1,5 @@
 // stdlib
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 // local
@@ -14,13 +13,11 @@ node_t *getMappingNode(btree_t *tree, int val) {
         return node;
       }
       node = node->right;
-      continue;
     } else if (val < node->val) {
       if (!node->left) {
         return node;
       }
       node = node->left;
-      continue;
     } else {
       return NULL;
     }

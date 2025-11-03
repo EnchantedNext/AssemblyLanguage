@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = matrix
-SRC = matrix.c
+TARGET = map
+SRC = map.c ulinkedlist.c
 
 all: $(TARGET)
 

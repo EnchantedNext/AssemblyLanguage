@@ -26,7 +26,6 @@ void setToMap(map_t *map, char *key, void *val) {
   }
   int bucket_id = hash_f(key);
   bucket_t *bucket = map->buckets[bucket_id];
-  // if no bucket pointer will be NULL
   if (!bucket) {
     bucket_t *new_bucket = malloc(sizeof(bucket_t));
     ulinkedlist_t *list = malloc(sizeof(ulinkedlist_t));

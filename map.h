@@ -1,7 +1,6 @@
 #ifndef HEAP_H
 #define HEAP_H
 
-// local
 #include "ulinkedlist.h"
 
 #define MAX_BUCKETS 128

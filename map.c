@@ -20,7 +20,7 @@ int hash_f(const char *key) {
   return hash % MAX_BUCKETS;
 }
 
-void set(map_t *map, char *key, void *val) {
+void setToMap(map_t *map, char *key, void *val) {
   if (!map->buckets) {
     map->buckets = calloc(MAX_BUCKETS, sizeof(bucket_t *));
   }
@@ -62,7 +62,7 @@ void set(map_t *map, char *key, void *val) {
   }
 }
 
-void *get(map_t *map, char *key) {
+void *getFromMap(map_t *map, char *key) {
   if (!map->buckets) {
     return NULL;
   }
@@ -82,19 +82,72 @@ void *get(map_t *map, char *key) {
   return NULL;
 }
 
-bool exists(map_t *map, char *key) { return true; }
+bool existsInMap(map_t *map, char *key) {
+  if (!map->buckets) {
+    return false;
+  }
+  int bucket_id = hash_f(key);
+  bucket_t *bucket = map->buckets[bucket_id];
+  if (!bucket) {
+    return false;
+  }
+  unode_t *node = bucket->list->head;
+  while (node != NULL) {
+    keyval_t *kv = (keyval_t *)node->val;
+    if (!strcmp(kv->key, key)) {
+      return true;
+    }
+    node = node->next;
+  }
+  return false;
+}
 
-void delete(map_t *map, char *key) {}
+void deleteFromMap(map_t *map, char *key) {
+  if (!map->buckets) {
+    return;
+  }
+  int bucket_id = hash_f(key);
+  bucket_t *bucket = map->buckets[bucket_id];
+  if (!bucket) {
+    return;
+  }
+  unode_t *node = bucket->list->head;
+  int idx = 0;
+  while (node != NULL) {
+    keyval_t *kv = (keyval_t *)node->val;
+    if (!strcmp(kv->key, key)) {
+      deleteAtIndex(bucket->list, idx);
+      return;
+    }
+    node = node->next;
+    idx++;
+  }
+  return;
+}
 
-void freeMap(map_t *map) {}
-
-int main(void) {
-  map_t *map = malloc(sizeof(map_t));
-  map->cnt = 0;
-  char *key = "key";
-  int val = 5;
-  set(map, key, &val);
-  void *ret = get(map, key);
-  int *ret_val = (int *)ret;
-  printf("%i\n", *ret_val);
+void freeMap(map_t *map) {
+  if (!map) {
+    return;
+  }
+  for (int i = 0; i < map->cnt; i++) {
+    bucket_t *bucket = map->buckets[i];
+    if (!bucket) {
+      continue;
+    }
+    unode_t *node = bucket->list->head;
+    unode_t *next;
+    while (node != NULL) {
+      next = node->next;
+      keyval_t *kv = (keyval_t *)node->val;
+      free(kv->key);
+      free(kv->val);
+      free(kv);
+      free(node);
+      node = next;
+    }
+    free(bucket->list);
+    free(bucket);
+  }
+  free(map->buckets);
+  free(map);
 }

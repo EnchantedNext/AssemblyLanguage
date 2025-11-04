@@ -22,4 +22,14 @@ typedef struct {
   int cnt;
 } map_t;
 
+void setToMap(map_t *map, char *key, void *val);
+
+void *getFromMap(map_t *map, char *key);
+
+bool existsInMap(map_t *map, char *key);
+
+void deleteFromMap(map_t *map, char *key);
+
+void freeMap(map_t *map);
+
 #endif

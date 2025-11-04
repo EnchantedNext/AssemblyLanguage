@@ -24,6 +24,6 @@ void *getByIndex(ulinkedlist_t *list, int idx);
 
 int deleteAtIndex(ulinkedlist_t *list, int idx);
 
-void freeLinkedList(ulinkedlist_t *list);
+void freeULinkedList(ulinkedlist_t *list);
 
 #endif

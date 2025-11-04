@@ -122,7 +122,7 @@ int deleteAtIndex(ulinkedlist_t *list, int idx) {
   return 0;
 }
 
-void freeLinkedList(ulinkedlist_t *list) {
+void freeULinkedList(ulinkedlist_t *list) {
   unode_t *node = list->head;
   unode_t *next;
   while (node != NULL) {

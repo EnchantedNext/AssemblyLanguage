@@ -1,17 +1,14 @@
-// stdlib
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
-// sockets
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 
-// threads
 #include <threads.h>
 
 #define PORT 5665
@@ -21,8 +18,6 @@
 #define PROCESS_TIME 3
 #define SEND_BUF "Server accepted this request!"
 #define WAIT_MSG_BUF_FMT "Response will take %i seconds!"
-
-// create sock -> bind sock -> listen -> accept -> serve in thread
 
 typedef struct {
   char msg[256];

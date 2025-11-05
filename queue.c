@@ -3,13 +3,14 @@
 #include <stdlib.h>
 
 // local
-#include "linkedlist.h"
-#include "queue.h"
+#include "local/linkedlist.h"
+#include "local/queue.h"
 
-int enqueue(queue_t *q, int val) { return addAtTail(&q->queue, val); }
+int enqueue(queue_t *q, int val) { return addAtTail(&q->queue, &val); }
 
 int dequeue(queue_t *q) {
-  int val = getByIndex(&q->queue, 0);
+  void *ptr = getByIndex(&q->queue, 0);
+  int val = *(int *)ptr;
   if (val == INT_MIN) {
     return INT_MIN;
   }

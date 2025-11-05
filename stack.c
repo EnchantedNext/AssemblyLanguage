@@ -1,16 +1,14 @@
-// stdlib
 #include <limits.h>
 #include <stdlib.h>
 
-// local
-#include "linkedlist.h"
+#include "local/linkedlist.h"
+#include "local/stack.h"
 
-#include "stack.h"
-
-int push(stack_t *st, int val) { return addAtTail(&st->stack, val); }
+int push(stack_t *st, int val) { return addAtTail(&st->stack, &val); }
 
 int pop(stack_t *st) {
-  int val = getByIndex(&st->stack, -1);
+  void *ptr = getByIndex(&st->stack, -1);
+  int val = *(int *)ptr;
   if (val == INT_MIN) {
     return INT_MIN;
   }
@@ -19,7 +17,8 @@ int pop(stack_t *st) {
 }
 
 int peek(stack_t *st) {
-  int val = getByIndex(&st->stack, -1);
+  void *ptr = getByIndex(&st->stack, -1);
+  int val = *(int *)ptr;
   if (val == INT_MIN) {
     return INT_MIN;
   }

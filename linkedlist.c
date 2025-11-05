@@ -1,22 +1,10 @@
-#include <limits.h>
+// stdlib
 #include <stdlib.h>
 
-#include "linkedlist.h"
+// local
+#include "local/linkedlist.h"
 
-//  typedef struct node_t node_t;
-
-//  struct node_t {
-//  int val;
-//  node_t *next;
-//  };
-
-//  typedef struct {
-//  node_t *head;
-//  node_t *tail;
-//  int length;
-//  } linkedlist_t;
-
-int addHeadToEmpty(linkedlist_t *list, int val) {
+int addHeadToEmpty(linkedlist_t *list, void *val) {
   list->length++;
   node_t *head = malloc(sizeof(node_t));
   if (head == NULL) {
@@ -29,7 +17,7 @@ int addHeadToEmpty(linkedlist_t *list, int val) {
   return 0;
 }
 
-int addAtTail(linkedlist_t *list, int val) {
+int addAtTail(linkedlist_t *list, void *val) {
   if (!list->length) {
     return addHeadToEmpty(list, val);
   }
@@ -45,7 +33,7 @@ int addAtTail(linkedlist_t *list, int val) {
   return 0;
 }
 
-int addAtHead(linkedlist_t *list, int val) {
+int addAtHead(linkedlist_t *list, void *val) {
   if (!list->length) {
     return addHeadToEmpty(list, val);
   }
@@ -68,7 +56,7 @@ node_t *findNode(linkedlist_t *list, int idx) {
   return node;
 }
 
-int addAtIndex(linkedlist_t *list, int val, int idx) {
+int addAtIndex(linkedlist_t *list, void *val, int idx) {
   if (idx > list->length) {
     return -1;
   }
@@ -89,9 +77,9 @@ int addAtIndex(linkedlist_t *list, int val, int idx) {
   return 0;
 }
 
-int getByIndex(linkedlist_t *list, int idx) {
+void *getByIndex(linkedlist_t *list, int idx) {
   if (idx >= list->length || idx < -1) {
-    return INT_MIN;
+    return NULL;
   } else if (idx == 0) {
     return list->head->val;
   } else if (idx == -1) {

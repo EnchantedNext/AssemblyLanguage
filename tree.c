@@ -1,9 +1,7 @@
-// stdlib
 #include <stdbool.h>
 #include <stdlib.h>
 
-// local
-#include "tree.h"
+#include "local/tree.h"
 
 node_t *getMappingNode(btree_t *tree, int val) {
   node_t *node = tree->root;

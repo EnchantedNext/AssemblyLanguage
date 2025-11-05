@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = map
-SRC = map.c ulinkedlist.c
+TARGET = set
+SRC = set.c map.c
 
 all: $(TARGET)
 

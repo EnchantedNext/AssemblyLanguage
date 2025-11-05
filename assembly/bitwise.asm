@@ -123,7 +123,7 @@ ascii_to_int:
 	jmp   .done
 
 .invalid_input_strict:
-	mov eax, 0
+	mov rax, 0
 	ret
 
 .done:

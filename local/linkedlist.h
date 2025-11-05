@@ -4,7 +4,7 @@
 typedef struct node_t node_t;
 
 struct node_t {
-  int val;
+  void *val;
   node_t *next;
 };
 
@@ -14,13 +14,13 @@ typedef struct {
   int length;
 } linkedlist_t;
 
-int addAtTail(linkedlist_t *list, int val);
+int addAtTail(linkedlist_t *list, void *val);
 
-int addAtHead(linkedlist_t *list, int val);
+int addAtHead(linkedlist_t *list, void *val);
 
-int addAtIndex(linkedlist_t *list, int val, int idx);
+int addAtIndex(linkedlist_t *list, void *val, int idx);
 
-int getByIndex(linkedlist_t *list, int idx);
+void *getByIndex(linkedlist_t *list, int idx);
 
 int deleteAtIndex(linkedlist_t *list, int idx);
 

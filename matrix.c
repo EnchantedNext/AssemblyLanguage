@@ -1,12 +1,7 @@
-// stdlib
 #include <stdio.h>
 #include <stdlib.h>
 
-// local
-#include "matrix.h"
-
-#define ROWS 3
-#define COLS 3
+#include "local/matrix.h"
 
 void initMatrix(matrix_t *matrix) {
   matrix->data = malloc(matrix->rows * sizeof(double *));
@@ -90,48 +85,4 @@ void stdoutMatrix(matrix_t *matrix) {
     }
     printf("]\n");
   }
-}
-
-int main(void) {
-  matrix_t *mf = malloc(sizeof(matrix_t));
-  mf->rows = ROWS;
-  mf->cols = COLS;
-  mf->data = NULL;
-  assignValueInMatrix(mf, 0, 0, 1);
-  assignValueInMatrix(mf, 0, 1, 2);
-  assignValueInMatrix(mf, 0, 2, 3);
-
-  assignValueInMatrix(mf, 1, 0, 4);
-  assignValueInMatrix(mf, 1, 1, 5);
-  assignValueInMatrix(mf, 1, 2, 6);
-
-  assignValueInMatrix(mf, 2, 0, 7);
-  assignValueInMatrix(mf, 2, 1, 8);
-  assignValueInMatrix(mf, 2, 2, 9);
-
-  //  stdoutMatrix(mf);
-  //  multiplyMatrixByNumber(mf, 2.00);
-  //  stdoutMatrix(mf);
-
-  matrix_t *ms = malloc(sizeof(matrix_t));
-  ms->rows = ROWS;
-  ms->cols = COLS;
-  ms->data = NULL;
-  assignValueInMatrix(ms, 0, 0, 1);
-  assignValueInMatrix(ms, 0, 1, 2);
-  assignValueInMatrix(ms, 0, 2, 3);
-
-  assignValueInMatrix(ms, 1, 0, 4);
-  assignValueInMatrix(ms, 1, 1, 5);
-  assignValueInMatrix(ms, 1, 2, 6);
-
-  assignValueInMatrix(ms, 2, 0, 7);
-  assignValueInMatrix(ms, 2, 1, 8);
-  assignValueInMatrix(ms, 2, 2, 9);
-
-  matrix_t *m = multiplyMatrices(mf, ms);
-  stdoutMatrix(m);
-  freeMatrix(mf);
-  freeMatrix(ms);
-  freeMatrix(m);
 }

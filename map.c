@@ -1,12 +1,9 @@
-// stdlib
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// local
-#include "map.h"
-#include "ulinkedlist.h"
+#include "local/linkedlist.h"
+#include "local/map.h"
 
 #define MAX_BUCKETS 128
 
@@ -28,7 +25,7 @@ void setToMap(map_t *map, char *key, void *val) {
   bucket_t *bucket = map->buckets[bucket_id];
   if (!bucket) {
     bucket_t *new_bucket = malloc(sizeof(bucket_t));
-    ulinkedlist_t *list = malloc(sizeof(ulinkedlist_t));
+    linkedlist_t *list = malloc(sizeof(linkedlist_t));
     keyval_t *kv = malloc(sizeof(keyval_t));
     if (!new_bucket || !list || !kv) {
       free(new_bucket);
@@ -70,7 +67,7 @@ void *getFromMap(map_t *map, char *key) {
   if (!bucket) {
     return NULL;
   }
-  unode_t *node = bucket->list->head;
+  node_t *node = bucket->list->head;
   while (node != NULL) {
     keyval_t *kv = (keyval_t *)node->val;
     if (!strcmp(kv->key, key)) {
@@ -90,7 +87,7 @@ bool existsInMap(map_t *map, char *key) {
   if (!bucket) {
     return false;
   }
-  unode_t *node = bucket->list->head;
+  node_t *node = bucket->list->head;
   while (node != NULL) {
     keyval_t *kv = (keyval_t *)node->val;
     if (!strcmp(kv->key, key)) {
@@ -110,7 +107,7 @@ void deleteFromMap(map_t *map, char *key) {
   if (!bucket) {
     return;
   }
-  unode_t *node = bucket->list->head;
+  node_t *node = bucket->list->head;
   int idx = 0;
   while (node != NULL) {
     keyval_t *kv = (keyval_t *)node->val;
@@ -133,8 +130,8 @@ void freeMap(map_t *map) {
     if (!bucket) {
       continue;
     }
-    unode_t *node = bucket->list->head;
-    unode_t *next;
+    node_t *node = bucket->list->head;
+    node_t *next;
     while (node != NULL) {
       next = node->next;
       keyval_t *kv = (keyval_t *)node->val;

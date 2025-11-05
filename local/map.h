@@ -1,7 +1,7 @@
 #ifndef HEAP_H
 #define HEAP_H
 
-#include "ulinkedlist.h"
+#include "linkedlist.h"
 
 #define MAX_BUCKETS 128
 
@@ -11,7 +11,7 @@ typedef struct {
 } keyval_t;
 
 typedef struct {
-  ulinkedlist_t *list;
+  linkedlist_t *list;
   int size;
   int id;
 } bucket_t;

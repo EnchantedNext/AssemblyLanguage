@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = hashset
-SRC = hashset.c linkedlist.c
+TARGET = graph
+SRC = graph.c
 
 all: $(TARGET)
 

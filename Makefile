@@ -1,7 +1,7 @@
 CC = clang
 
-TARGET = set
-SRC = set.c map.c
+TARGET = hashset
+SRC = hashset.c linkedlist.c
 
 all: $(TARGET)
 

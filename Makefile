@@ -1,18 +1,17 @@
-CC = clang
+CC = clang++
 
-TARGET = graph
-SRC = graph.c
+SRC = inheritance.cpp composition.cpp
+DEST = inheritance composition
 
-all: $(TARGET)
+all: $(DEST)
 
-$(TARGET): $(SRC)
-	$(CC) -o $(TARGET) $(SRC)
+inheritance: inheritance.cpp
+	$(CC) $< -o $@
 
-run:
-	./$(TARGET)
+composition: composition.cpp
+	$(CC) $< -o $@
 
 clean:
-	@echo "Cleaning up..."
-	rm -f $(TARGET)
+	rm -f $(DEST)
 
-.PHONY: all run clean
+.PHONY: all clean

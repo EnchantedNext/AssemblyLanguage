@@ -1,8 +1,6 @@
-// stdlib
 #include <limits.h>
 #include <stdlib.h>
 
-// local
 #include "local/linkedlist.h"
 #include "local/queue.h"
 

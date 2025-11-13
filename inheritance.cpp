@@ -2,30 +2,30 @@
 
 class IdStore {
 public:
-  static int NextId() {
+  static unsigned int NextId() {
     Id++;
     return Id;
   };
 
 private:
-  static int Id;
+  static unsigned int Id;
 };
 
-int IdStore::Id = 0;
+unsigned int IdStore::Id = 0;
 
 class IdMixin {
 private:
-  int Id;
+  unsigned int Id;
 
 protected:
-  int GetId() { return this->Id; };
-  void SetId(int Id) { this->Id = Id; };
+  unsigned int GetId() { return this->Id; };
+  void SetId(const unsigned int Id) { this->Id = Id; };
 };
 
 class Model : IdMixin {
 public:
   Model() { this->SetId(IdStore::NextId()); };
-  int Id() { return this->GetId(); };
+  unsigned int Id() { return this->GetId(); };
 };
 
 int main(void) {

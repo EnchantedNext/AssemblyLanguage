@@ -2,24 +2,24 @@
 
 class IdStore {
 public:
-  static int NextId() {
+  static unsigned int NextId() {
     Id++;
     return Id;
   };
 
 private:
-  static int Id;
+  static unsigned int Id;
 };
 
-int IdStore::Id = 0;
+unsigned int IdStore::Id = 0;
 
 class IdMixin {
 private:
-  int Id;
+  unsigned int Id;
 
 public:
-  int GetId() { return this->Id; };
-  void SetId(int Id) { this->Id = Id; };
+  unsigned int GetId() { return this->Id; };
+  void SetId(const unsigned int Id) { this->Id = Id; };
 };
 
 class Model {
@@ -28,7 +28,7 @@ public:
     this->IdScope = IdMixin();
     this->IdScope.SetId(IdStore::NextId());
   };
-  int Id() { return this->IdScope.GetId(); };
+  unsigned int Id() { return this->IdScope.GetId(); };
 
 private:
   IdMixin IdScope;
